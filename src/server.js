@@ -8,6 +8,7 @@ var enableHotReload = require("./hot-reload");
 var loginController = require("./controllers/loginController");
 var cadastroController = require("./controllers/cadastroController");
 var estoqueController = require("./controllers/estoqueController");
+var autenticar = require("./middlewares/autenticar");
 var session = require("express-session");
 
 
@@ -50,12 +51,12 @@ app.get("/criar-conta", cadastroController.exibirPaginaCadastro);
  app.post('/criar-conta', cadastroController.adicionarUsuario);
 
 // Rota para a página de estoque
-app.get("/estoque", estoqueController.renderizarPaginaEstoque);
+app.get("/estoque",autenticar.protegerRota, estoqueController.renderizarPaginaEstoque);
 
 
 // Rota para a página de criar produto
-app.get("/criar-produto", estoqueController.renderizarPaginaProduto);
-app.post("/criar-estoque", estoqueController.criarEstoque);
+app.get("/criar-produto",autenticar.protegerRota,estoqueController.renderizarPaginaProduto);
+app.post("/criar-estoque",estoqueController.criarEstoque);
 
 
 
