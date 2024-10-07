@@ -7,7 +7,7 @@
     "start": "nodemon src/server.js"
   },
   "keywords": [],
-  "author": "kaiqueCovo",
+  "author": "douglas",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
